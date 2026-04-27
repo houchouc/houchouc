@@ -5,9 +5,6 @@ using System.Collections.Generic;
 public class CustomerSystem : MonoBehaviour
 {
     [SerializeField] private Transform customersParent;
-    [SerializeField] private float baseSpawnInterval = 2.5f;
-    [SerializeField] private float minSpawnInterval = 0.75f;
-    [SerializeField] private float spawnReductionPerLevel = 0.04f;
     [SerializeField] private float roadWidth = 100f;
     [SerializeField] private float roadVerticalOffset = 0f;
 
@@ -63,13 +60,13 @@ public class CustomerSystem : MonoBehaviour
     private float GetSpawnInterval()
     {
         int spawnLevel = GameManager.Instance.Upgrades.GetUpgradeLevel("louder_bell");
-        float interval = baseSpawnInterval * Mathf.Pow(1f - spawnReductionPerLevel, spawnLevel);
-        return Mathf.Max(interval, minSpawnInterval);
+        float interval = GameConfig.BASE_SPAWN_INTERVAL * Mathf.Pow(1f - GameConfig.SPAWN_REDUCTION_PER_LEVEL, spawnLevel);
+        return Mathf.Max(interval, GameConfig.MIN_SPAWN_INTERVAL);
     }
 
     private void SpawnCustomer()
     {
-        bool isImpatient = UnityEngine.Random.value > 0.7f; // 30% impatient
+        bool isImpatient = UnityEngine.Random.value > (1f - GameConfig.IMPATIENT_SPAWN_CHANCE);
 
         Customer customer = GetOrCreateCustomer(isImpatient);
         customer.SetPosition(GetRandomSpawnPosition());
@@ -170,7 +167,7 @@ public class Customer : MonoBehaviour
     public void SetCustomerType(bool impatient)
     {
         isImpatient = impatient;
-        patience = impatient ? 3f : 5f;
+        patience = impatient ? GameConfig.IMPATIENT_PATIENCE : GameConfig.NORMAL_PATIENCE;
     }
 
     public void SetPosition(Vector3 newPosition)

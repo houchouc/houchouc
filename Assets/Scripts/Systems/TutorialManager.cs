@@ -114,7 +114,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public TutorialState GetTutorialState() => (TutorialState)currentState;
+    public TutorialState GetTutorialStateEnum() => currentState;
 
     public int GetTutorialState() => (int)currentState;
 

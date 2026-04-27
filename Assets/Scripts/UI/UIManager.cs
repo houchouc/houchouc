@@ -66,7 +66,7 @@ public class UIManager : MonoBehaviour
     private void UpdateUnlockProgress()
     {
         double lifetime = GameManager.Instance.Economy.GetLifetimeCash();
-        double targetCash = 750; // From GDD section 14.15
+        double targetCash = GameConfig.SPRINKLE_BOMB_UNLOCK_CASH;
         double progress = Mathf.Min(1f, (float)(lifetime / targetCash));
 
         if (progressBar != null)

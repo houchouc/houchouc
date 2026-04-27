@@ -25,13 +25,13 @@ public class UpgradeSystem : MonoBehaviour
 
     private void InitializeUpgrades()
     {
-        // MVP Upgrades as per GDD section 14.12
-        upgrades["bigger_cone"] = new UpgradeData { id = "bigger_cone", name = "Bigger Cone", baseCost = 25, growthRate = 1.18f, currentLevel = 0 };
-        upgrades["faster_scoop"] = new UpgradeData { id = "faster_scoop", name = "Faster Scoop", baseCost = 50, growthRate = 1.20f, currentLevel = 0 };
-        upgrades["louder_bell"] = new UpgradeData { id = "louder_bell", name = "Louder Bell", baseCost = 75, growthRate = 1.20f, currentLevel = 0 };
-        upgrades["wider_window"] = new UpgradeData { id = "wider_window", name = "Wider Window", baseCost = 100, growthRate = 1.22f, currentLevel = 0 };
-        upgrades["combo_cup"] = new UpgradeData { id = "combo_cup", name = "Combo Cup", baseCost = 150, growthRate = 1.25f, currentLevel = 0 };
-        upgrades["auto_bell"] = new UpgradeData { id = "auto_bell", name = "Auto Bell", baseCost = 500, growthRate = 1.0f, currentLevel = 0 };
+        // MVP Upgrades as per GDD section 14.12 - using GameConfig
+        upgrades["bigger_cone"] = new UpgradeData { id = "bigger_cone", name = "Bigger Cone", baseCost = GameConfig.BIGGER_CONE_BASE_COST, growthRate = GameConfig.BIGGER_CONE_GROWTH, currentLevel = 0 };
+        upgrades["faster_scoop"] = new UpgradeData { id = "faster_scoop", name = "Faster Scoop", baseCost = GameConfig.FASTER_SCOOP_BASE_COST, growthRate = GameConfig.FASTER_SCOOP_GROWTH, currentLevel = 0 };
+        upgrades["louder_bell"] = new UpgradeData { id = "louder_bell", name = "Louder Bell", baseCost = GameConfig.LOUDER_BELL_BASE_COST, growthRate = GameConfig.LOUDER_BELL_GROWTH, currentLevel = 0 };
+        upgrades["wider_window"] = new UpgradeData { id = "wider_window", name = "Wider Window", baseCost = GameConfig.WIDER_WINDOW_BASE_COST, growthRate = GameConfig.WIDER_WINDOW_GROWTH, currentLevel = 0 };
+        upgrades["combo_cup"] = new UpgradeData { id = "combo_cup", name = "Combo Cup", baseCost = GameConfig.COMBO_CUP_BASE_COST, growthRate = GameConfig.COMBO_CUP_GROWTH, currentLevel = 0 };
+        upgrades["auto_bell"] = new UpgradeData { id = "auto_bell", name = "Auto Bell", baseCost = GameConfig.AUTO_BELL_BASE_COST, growthRate = 1.0f, currentLevel = 0 };
         upgrades["turbo_tires"] = new UpgradeData { id = "turbo_tires", name = "Turbo Tires", baseCost = 0, growthRate = 1.0f, currentLevel = 0 }; // Internal use only
     }
 

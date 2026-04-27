@@ -4,10 +4,6 @@ using System;
 public class TruckSystem : MonoBehaviour
 {
     [SerializeField] private Transform truckTransform;
-    [SerializeField] private float baseSpeed = 1f;
-    [SerializeField] private float baseSpeedUpgradeBonus = 0.05f;
-    [SerializeField] private float baseSellRange = 120f;
-    [SerializeField] private float sellRangeUpgradeBonus = 5f;
     [SerializeField] private float roadLeftBound = -300f;
     [SerializeField] private float roadRightBound = 300f;
     [SerializeField] private SpriteRenderer truckVisuals;
@@ -67,10 +63,10 @@ public class TruckSystem : MonoBehaviour
     public void UpdateTruckStats()
     {
         int speedLevel = GameManager.Instance.Upgrades.GetUpgradeLevel("turbo_tires");
-        currentSpeed = baseSpeed * (1f + (speedLevel * baseSpeedUpgradeBonus));
+        currentSpeed = GameConfig.BASE_TRUCK_SPEED * (1f + (speedLevel * GameConfig.BASE_SPEED_UPGRADE_BONUS));
 
         int rangeLevel = GameManager.Instance.Upgrades.GetUpgradeLevel("wider_window");
-        currentSellRange = baseSellRange + (rangeLevel * sellRangeUpgradeBonus);
+        currentSellRange = GameConfig.BASE_SELL_RANGE + (rangeLevel * GameConfig.SELL_RANGE_UPGRADE_BONUS);
 
         if (sellRangeCollider != null)
         {
